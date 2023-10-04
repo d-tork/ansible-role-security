@@ -12,6 +12,7 @@ security_ssh_restart_handler_state: restarted
 security_ssh_allowed_users: [ansible, '{{ primary_user }}']
 security_ssh_allowed_groups: []
 
+security_sudoers_passwordless: []
 security_sudoers_passworded: [ansible, '{{ primary_user }}']
 
 security_autoupdate_enabled: true
