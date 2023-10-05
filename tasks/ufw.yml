@@ -22,3 +22,11 @@
     port: 32400
     src: '{{ security_plex_allowed_subnet }}'
     comment: Plex
+
+- name: Allow Portainer to local network.
+  community.general.ufw:
+    rule: allow
+    port: 9000
+    proto: tcp
+    src: '{{ security_plex_allowed_subnet }}'
+    comment: Portainer
