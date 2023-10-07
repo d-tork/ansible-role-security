@@ -17,16 +17,23 @@
     comment: SSH
 
 - name: Allow Plex to local network.
-  community.general.ufw:
-    rule: allow
-    port: 32400
-    src: '{{ security_plex_allowed_subnet }}'
-    comment: Plex
+  block:
+    - name: Copy Plex UFW configuration to server.
+      ansible.builtin.copy:
+        src: files/plexmediaserver
+        dest: /etc/ufw/applications.d/plexmediaserver
+        mode: '0644'
+
+    - name: Apply Plex rules to UFW via profile in /etc/ufw/applications.d/.
+      community.general.ufw:
+        rule: allow
+        name: plexmediaserver
+        state: reloaded
 
 - name: Allow Portainer to local network.
   community.general.ufw:
     rule: allow
     port: 9000
     proto: tcp
-    src: '{{ security_plex_allowed_subnet }}'
+    src: '{{ security_allowed_subnet }}'
     comment: Portainer
