@@ -15,19 +15,3 @@
     port: '{{ security_ssh_port }}'
     src: '{{ security_ssh_allowed_subnet }}'
     comment: SSH
-
-- name: Allow Portainer to local network.
-  community.general.ufw:
-    rule: allow
-    port: 9000
-    proto: tcp
-    src: '{{ security_allowed_subnet }}'
-    comment: Portainer
-
-- name: Allow MySQL to local network.
-  community.general.ufw:
-    rule: allow
-    port: 3306
-    proto: tcp
-    src: '{{ security_allowed_subnet }}'
-    comment: MySQL
