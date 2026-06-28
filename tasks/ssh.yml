@@ -18,7 +18,7 @@
     - regexp: "^PermitRootLogin"
       line: "PermitRootLogin {{ security_ssh_permit_root_login }}"
     - regexp: "^Port"
-      line: "Port {{ security_ssh_port }}"
+      line: "Port {{ security_ssh_port | default(22) }}"
     - regexp: "^UseDNS"
       line: "UseDNS {{ security_ssh_usedns }}"
     - regexp: "^PermitEmptyPasswords"
